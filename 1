@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Coin {
+private:
+    int nominal; // Номинал монеты
+    int cnt; // Количество монет
+
+public:
+    // Конструктор
+    Coin(int n, int c) {
+        nominal = n;
+        cnt = c;
+    }
+    // Функция формирования строки с информацией об объекте
+    string Inf() {
+        return "Номинал монеты: " + to_string(nominal) + ", количество: " + to_string(cnt);
+    }
+    // Функция вычисления суммы монет
+    int Sum() {
+        return nominal * cnt;
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "rus");
+    int nominal, cnt;
+    // Ввод данных
+    cout << "Введите номинал монеты: ";
+    cin >> nominal;
+
+    cout << "Введите количество монет: ";
+    cin >> cnt;
+
+    Coin coin(nominal, cnt);
+    // Результат
+    cout << "Общаяя информация. " << coin.Inf() << endl;
+    cout << "Общая стоимость: " << coin.Sum() << endl;
+
+    return 0;
+}
