@@ -1,0 +1,76 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Date {
+private:
+    int day; // День
+    int month; // Месяц
+    int year; // Год
+
+public:
+    // Конструктор по умолчанию
+    Date() {
+        day = 19;
+        month = 8;
+        year = 2005;
+    }
+
+    // Конструктор перезагрузки с параметрами
+    Date(int d, int m, int y) {
+        day = d;
+        month = m;
+        year = y;
+    }
+
+    // Деструктор
+    ~Date() {
+        cout << "Object destroyed" << endl;
+    }
+
+    // Функция обработки данных 1: Увеличить год на 1
+    void increaseYear() {
+        year++;
+    }
+
+    // Функция обработки данных 2: Уменьшить дату на 2 дня
+    void decreaseDate() {
+        day -= 2;
+        if (day < 0) {
+            month--;
+            if (month == 0) {
+                month = 12;
+                year--;
+            }
+            day += 30;
+        }
+    }
+
+    // Функция формирования строки информации об объекте
+    string Inf() {
+        return to_string(day) + "." + to_string(month) + "." + to_string(year);
+    }
+};
+
+int main() {
+    setlocale(LC_ALL, "rus");
+
+    Date date_default; // Используем конструктор по умолчанию
+    cout << "Дата по умолчанию: " << date_default.Inf() << endl;
+
+    int d, m, y;
+
+    cout << "Пожалуйста, введите день, месяц и год: ";
+    cin >> d >> m >> y;
+
+    Date date_parameters(d, m, y); // Конструктор с параметрами
+    cout << "Дата с параметрами: " << date_parameters.Inf() << endl;
+
+    date_parameters.increaseYear(); // Функция обработки данный 1
+    cout << "Новая дата, увеличенная на 1 год: " << date_parameters.Inf() << endl;
+
+    date_parameters.decreaseDate(); // Функция обработки данных 2
+    cout << "Новая дата, уменьшенная на 2 дня: " << date_parameters.Inf() << endl;
+
+    return 0;
+}
